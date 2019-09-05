@@ -1,0 +1,16 @@
+{
+    "name": "superchairon/laravel-google-cloud-logging",
+    "description": "A Google Cloud Logging system for Laravel",
+    "type": "library",
+    "require": {
+        "google/cloud-error-reporting": "^0.15.0",
+        "google/cloud-logging": "^1.18"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jorge Rodriguez",
+            "email": "trillo@hotmail.com"
+        }
+    ]
+}
