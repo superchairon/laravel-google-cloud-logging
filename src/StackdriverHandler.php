@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Helpers;
+namespace SuperChairon\LaravelGoogleCloudLogging;
 
 use Google\Cloud\Logging\LoggingClient;
 use Monolog\Handler\AbstractProcessingHandler;

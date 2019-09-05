@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Helpers;
+namespace SuperChairon\LaravelGoogleCloudLogging;
 
 
 use Illuminate\Log\ParsesLogConfiguration;
