@@ -15,7 +15,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Superchairon\\LaravelGoogleCloudLogging§\\": "src/"
+            "Superchairon\\LaravelGoogleCloudLogging\\": "src/"
         }
     }
 }
