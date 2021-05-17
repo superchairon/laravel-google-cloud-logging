@@ -4,7 +4,8 @@
     "type": "library",
     "require": {
         "google/cloud-logging": "^1.18",
-        "google/cloud-error-reporting": "^0.15.0"
+        "google/cloud-error-reporting": "^0.15.0",
+        "illuminate/log": "^5.1|^6.0|^7.0|^8.0"
     },
     "license": "MIT",
     "authors": [
@@ -15,7 +16,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Superchairon\\LaravelGoogleCloudLogging§\\": "src/"
+            "Superchairon\\LaravelGoogleCloudLogging\\": "src/"
         }
     }
 }
