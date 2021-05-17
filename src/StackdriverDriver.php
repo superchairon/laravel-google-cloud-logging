@@ -2,9 +2,8 @@
 
 namespace SuperChairon\LaravelGoogleCloudLogging;
 
-
-use Illuminate\Log\ParsesLogConfiguration;
 use Monolog\Logger;
+use Illuminate\Log\ParsesLogConfiguration;
 
 class StackdriverDriver
 {
@@ -14,7 +13,9 @@ class StackdriverDriver
     {
         return new Logger($this->parseChannel($config), [
             new StackdriverHandler(
-                $config['labels'], $config['logName'], $this->level($config)
+                $config['labels'],
+                $config['logName'],
+                $this->level($config)
             ),
         ]);
     }

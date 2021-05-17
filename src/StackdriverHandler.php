@@ -2,9 +2,9 @@
 
 namespace SuperChairon\LaravelGoogleCloudLogging;
 
+use Monolog\Logger;
 use Google\Cloud\Logging\LoggingClient;
 use Monolog\Handler\AbstractProcessingHandler;
-use Monolog\Logger;
 
 /**
  * StackdriverHandler
@@ -37,12 +37,9 @@ class StackdriverHandler extends AbstractProcessingHandler
     }
 
     /**
-     * Writes the record down to the log
-     *
-     * @param  array $record
-     * @return void
+     * Writes the record down to the log of the implementing handler
      */
-    protected function write(array $record)
+    protected function write(array $record): void
     {
         // set options, according to Google Stackdirver API documentation
         $options = [
