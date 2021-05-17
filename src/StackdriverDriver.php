@@ -13,8 +13,7 @@ class StackdriverDriver
     {
         return new Logger($this->parseChannel($config), [
             new StackdriverHandler(
-                $config['labels'],
-                $config['logName'],
+                $config,
                 $this->level($config)
             ),
         ]);

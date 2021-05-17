@@ -22,17 +22,15 @@ class StackdriverHandler extends AbstractProcessingHandler
 
     /**
      * StackdriverHandler constructor.
-     * @param $labels
-     * @param $logName
+     *
+     * @param array $config
      * @param int $level
      * @param bool $bubble
      */
-    public function __construct($labels, $logName, $level = Logger::DEBUG, $bubble = true)
+    public function __construct($config, $level = Logger::DEBUG, $bubble = true)
     {
-        $loggerOptions = [
-            'labels' => $labels
-        ];
-        $this->logger = (new LoggingClient())->logger($logName, $loggerOptions);
+        $logName  = $config['logName'];
+        $this->logger = (new LoggingClient($config))->logger($logName, $config);
         parent::__construct($level, $bubble);
     }
 
