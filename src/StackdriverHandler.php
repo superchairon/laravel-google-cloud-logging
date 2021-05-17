@@ -5,6 +5,7 @@ namespace SuperChairon\LaravelGoogleCloudLogging;
 use Monolog\Logger;
 use Google\Cloud\Logging\LoggingClient;
 use Monolog\Handler\AbstractProcessingHandler;
+use Google\Cloud\Logging\Logger as GoogleLogger;
 
 /**
  * StackdriverHandler
@@ -16,7 +17,7 @@ class StackdriverHandler extends AbstractProcessingHandler
 {
     /**
      * The Stackdriver logger
-     * @var Google\Cloud\Logging\Logger
+     * @var GoogleLogger
      */
     private $logger;
 
@@ -46,7 +47,7 @@ class StackdriverHandler extends AbstractProcessingHandler
 
         // set data, based on the $record array received as parameter from Monolog
         $data = [
-            'message' => $record['message'],
+            'message' => $record['formatted'],
         ];
         if ($record['context']) {
             $data['context'] = $record['context'];
