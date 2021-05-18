@@ -18,15 +18,14 @@ Add a new channel in your `logging.php` config
 
 ```php
         'stackdriver' => [
-            'driver' => 'custom',
-            'via' => \SuperChairon\LaravelGoogleCloudLogging\StackdriverChannel::class,
+            'driver' => 'stackdriver',
+            'level' => 'debug',
             'logName' => 'my-application-log',
             'labels' => [
                 'application' => env('APP_NAME'),
                 'environment' => env('APP_ENV'),
                 'other labels' => '...',
             ],
-            'level' => 'debug',
         ]
 ```
 
@@ -42,7 +41,7 @@ If the `GOOGLE_CLOUD_PROJECT` and `GOOGLE_APPLICATION_CREDENTIALS` env vars are 
 Otherwise you can set as config
 ```php
         'stackdriver' => [
-            'driver' => 'custom',
+            'driver' => 'stackdriver',
             ...
             'projectId' => env('GOOGLE_CLOUD_PROJECT_ID', 'project-id'),
             'keyFilePath' => env('GOOGLE_CLOUD_KEY_FILE', '/path/to/service-account.json'),
@@ -51,4 +50,4 @@ Otherwise you can set as config
 
 While running on **Google Cloud Platform** environments such as **Google Compute Engine**, **Google App Engine** and **Google Kubernetes Engine**, no extra work is needed. The Project ID and Credentials and are discovered automatically. Code should be written as if already authenticated.
 
-For more information visit the [Authentication documentation for the Google Cloud Client Library for PHP](https://github.com/googleapis/google-cloud-php/blob/master/AUTHENTICATION.md) 
+For more information visit the [Authentication documentation for the Google Cloud Client Library for PHP](https://github.com/googleapis/google-cloud-php/blob/master/AUTHENTICATION.md)

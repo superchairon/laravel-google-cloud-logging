@@ -18,5 +18,12 @@
         "psr-4": {
             "SuperChairon\\LaravelGoogleCloudLogging\\": "src/"
         }
+    },
+    "extra": {
+      "laravel": {
+        "providers": [
+          "SuperChairon\\LaravelGoogleCloudLogging\\StackdriverServiceProvider"
+        ]
+      }
     }
 }
