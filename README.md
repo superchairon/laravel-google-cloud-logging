@@ -14,19 +14,18 @@ This package is a driver for logging and error reporting for Google Cloud Platfo
 composer require superchairon/laravel-google-cloud-logging
 ```
 
-Add a new driver in your `logging.php` config
+Add a new channel in your `logging.php` config
 
 ```php
         'stackdriver' => [
-            'driver' => 'custom',
-            'via' => \SuperChairon\LaravelGoogleCloudLogging\StackdriverDriver::class,
+            'driver' => 'stackdriver',
+            'level' => 'debug',
             'logName' => 'my-application-log',
             'labels' => [
                 'application' => env('APP_NAME'),
                 'environment' => env('APP_ENV'),
                 'other labels' => '...',
             ],
-            'level' => 'debug',
         ]
 ```
 
@@ -39,7 +38,16 @@ If the `GOOGLE_CLOUD_PROJECT` and `GOOGLE_APPLICATION_CREDENTIALS` env vars are 
    putenv('GOOGLE_CLOUD_PROJECT=project-id');
    putenv('GOOGLE_APPLICATION_CREDENTIALS=/path/to/service-account.json');
    ```
+Otherwise you can set as config
+```php
+        'stackdriver' => [
+            'driver' => 'stackdriver',
+            ...
+            'projectId' => env('GOOGLE_CLOUD_PROJECT_ID', 'project-id'),
+            'keyFilePath' => env('GOOGLE_CLOUD_KEY_FILE', '/path/to/service-account.json'),
+        ]
+```
 
 While running on **Google Cloud Platform** environments such as **Google Compute Engine**, **Google App Engine** and **Google Kubernetes Engine**, no extra work is needed. The Project ID and Credentials and are discovered automatically. Code should be written as if already authenticated.
 
-For more information visit the [Authentication documentation for the Google Cloud Client Library for PHP](https://github.com/googleapis/google-cloud-php/blob/master/AUTHENTICATION.md) 
+For more information visit the [Authentication documentation for the Google Cloud Client Library for PHP](https://github.com/googleapis/google-cloud-php/blob/master/AUTHENTICATION.md)

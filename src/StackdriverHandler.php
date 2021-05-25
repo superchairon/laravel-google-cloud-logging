@@ -2,9 +2,10 @@
 
 namespace SuperChairon\LaravelGoogleCloudLogging;
 
+use Monolog\Logger;
 use Google\Cloud\Logging\LoggingClient;
 use Monolog\Handler\AbstractProcessingHandler;
-use Monolog\Logger;
+use Google\Cloud\Logging\Logger as GoogleLogger;
 
 /**
  * StackdriverHandler
@@ -16,33 +17,28 @@ class StackdriverHandler extends AbstractProcessingHandler
 {
     /**
      * The Stackdriver logger
-     * @var Google\Cloud\Logging\Logger
+     * @var GoogleLogger
      */
     private $logger;
 
     /**
      * StackdriverHandler constructor.
-     * @param $labels
-     * @param $logName
+     *
+     * @param array $config
      * @param int $level
      * @param bool $bubble
      */
-    public function __construct($labels, $logName, $level = Logger::DEBUG, $bubble = true)
+    public function __construct($config, $level = Logger::DEBUG, $bubble = true)
     {
-        $loggerOptions = [
-            'labels' => $labels
-        ];
-        $this->logger = (new LoggingClient())->logger($logName, $loggerOptions);
+        $logName  = $config['logName'];
+        $this->logger = (new LoggingClient($config))->logger($logName, $config);
         parent::__construct($level, $bubble);
     }
 
     /**
-     * Writes the record down to the log
-     *
-     * @param  array $record
-     * @return void
+     * Writes the record down to the log of the implementing handler
      */
-    protected function write(array $record)
+    protected function write(array $record): void
     {
         // set options, according to Google Stackdirver API documentation
         $options = [
@@ -51,7 +47,7 @@ class StackdriverHandler extends AbstractProcessingHandler
 
         // set data, based on the $record array received as parameter from Monolog
         $data = [
-            'message' => $record['message'],
+            'message' => $record['formatted'],
         ];
         if ($record['context']) {
             $data['context'] = $record['context'];
